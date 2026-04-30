@@ -1,0 +1,182 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="vi">\
+<head>\
+  <meta charset="UTF-8">\
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+  <title>T\'ednh s\uc0\u7889  n\u259 m mua nh\'e0</title>\
+\
+  <style>\
+    body \{\
+      margin: 0;\
+      padding: 20px;\
+      background: #f5f5f5;\
+      font-family: Arial, sans-serif;\
+      color: #111;\
+    \}\
+\
+    .calculator-container \{\
+      max-width: 900px;\
+      margin: 40px auto;\
+      background: #f3f3f3;\
+      border-radius: 24px;\
+      padding: 40px;\
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);\
+      font-family: Arial, sans-serif;\
+    \}\
+\
+    .title \{\
+      font-size: 56px;\
+      font-weight: 800;\
+      line-height: 1.2;\
+      margin-bottom: 36px;\
+      text-align: center;\
+      font-family: Arial, sans-serif;\
+    \}\
+\
+    .label \{\
+      font-size: 28px;\
+      font-weight: 600;\
+      margin-bottom: 18px;\
+      display: block;\
+      font-family: Arial, sans-serif;\
+    \}\
+\
+    .input-box \{\
+      width: 100%;\
+      padding: 24px;\
+      font-size: 24px;\
+      border: 2px solid #999;\
+      border-radius: 6px;\
+      box-sizing: border-box;\
+      margin-bottom: 24px;\
+      background: white;\
+      font-family: Arial, sans-serif;\
+    \}\
+\
+    .calculate-btn \{\
+      width: 100%;\
+      background: #000;\
+      color: white;\
+      border: none;\
+      padding: 22px;\
+      font-size: 28px;\
+      font-weight: 700;\
+      cursor: pointer;\
+      border-radius: 4px;\
+      transition: 0.2s;\
+      font-family: Arial, sans-serif;\
+    \}\
+\
+    .calculate-btn:hover \{\
+      opacity: 0.92;\
+    \}\
+\
+    .result \{\
+      margin-top: 36px;\
+      text-align: center;\
+      font-size: 32px;\
+      font-weight: 700;\
+      line-height: 1.5;\
+      font-family: Arial, sans-serif;\
+    \}\
+\
+    .note \{\
+      margin-top: 20px;\
+      text-align: center;\
+      font-size: 20px;\
+      color: #777;\
+      font-family: Arial, sans-serif;\
+    \}\
+\
+    @media (max-width: 768px) \{\
+      .calculator-container \{\
+        padding: 24px;\
+      \}\
+\
+      .title \{\
+        font-size: 38px;\
+      \}\
+\
+      .label \{\
+        font-size: 22px;\
+      \}\
+\
+      .input-box \{\
+        font-size: 20px;\
+        padding: 18px;\
+      \}\
+\
+      .calculate-btn \{\
+        font-size: 22px;\
+        padding: 18px;\
+      \}\
+\
+      .result \{\
+        font-size: 24px;\
+      \}\
+\
+      .note \{\
+        font-size: 16px;\
+      \}\
+    \}\
+  </style>\
+</head>\
+\
+<body>\
+\
+  <div class="calculator-container">\
+\
+    <div class="title">\
+      B\uc0\u7841 n c\u7847 n bao nhi\'eau n\u259 m \u273 \u7875  mua nh\'e0?\
+    </div>\
+\
+    <label class="label">\
+      Nh\uc0\u7853 p thu nh\u7853 p m\u7895 i th\'e1ng (VN\u272 ):\
+    </label>\
+\
+    <input \
+      type="number" \
+      id="salary"\
+      class="input-box"\
+      placeholder="V\'ed d\uc0\u7909 : 15000000"\
+    >\
+\
+    <button class="calculate-btn" onclick="calculateYears()">\
+      T\'ednh to\'e1n\
+    </button>\
+\
+    <div class="result" id="result"></div>\
+\
+    <div class="note">\
+      *Gi\'e1 c\uc0\u259 n h\u7897  gi\u7843  \u273 \u7883 nh: 4 t\u7927  \u273 \u7891 ng (TP.HCM)\
+    </div>\
+\
+  </div>\
+\
+  <script>\
+    function calculateYears() \{\
+      const salary = parseFloat(document.getElementById("salary").value);\
+      const housePrice = 4000000000;\
+\
+      if (!salary || salary <= 0) \{\
+        document.getElementById("result").innerHTML =\
+          "Vui l\'f2ng nh\uc0\u7853 p thu nh\u7853 p h\u7907 p l\u7879 .";\
+        return;\
+      \}\
+\
+      const years = housePrice / (salary * 12);\
+\
+      document.getElementById("result").innerHTML =\
+        "B\uc0\u7841 n c\u7847 n kho\u7843 ng <strong>" + years.toFixed(1) + " n\u259 m</strong> \u273 \u7875  mua nh\'e0";\
+    \}\
+  </script>\
+\
+</body>\
+</html>}
