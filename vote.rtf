@@ -1,0 +1,236 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="vi">\
+<head>\
+    <meta charset="UTF-8">\
+    <style>\
+        /* To\'e0n b\uc0\u7897  font ch\u7919  \u273 \u7893 i sang Arial */\
+        .vne-survey-box \{\
+            font-family: Arial, sans-serif;\
+            max-width: 600px;\
+            margin: 20px auto;\
+            background: #f9f9f9;\
+            padding: 20px;\
+            color: #333;\
+        \}\
+\
+        .vne-header \{\
+            display: flex;\
+            justify-content: space-between;\
+            font-size: 12px;\
+            color: #757575;\
+            margin-bottom: 10px;\
+        \}\
+\
+        .vne-title \{\
+            font-size: 24px;\
+            font-weight: bold;\
+            margin-bottom: 20px;\
+            line-height: 1.3;\
+        \}\
+\
+        /* Giao di\uc0\u7879 n l\u7921 a ch\u7885 n */\
+        .vne-options \{\
+            list-style: none;\
+            padding: 0;\
+            margin: 0;\
+        \}\
+\
+        .vne-option \{\
+            background: #fff;\
+            border: 1px solid #e0e0e0;\
+            border-radius: 4px;\
+            padding: 12px 15px;\
+            margin-bottom: 10px;\
+            cursor: pointer;\
+            display: flex;\
+            align-items: center;\
+            transition: background 0.2s;\
+        \}\
+\
+        .vne-option:hover \{\
+            background: #f0f0f0;\
+        \}\
+\
+        .vne-option input \{\
+            margin-right: 12px;\
+            width: 18px;\
+            height: 18px;\
+            cursor: pointer;\
+        \}\
+\
+        .vne-option label \{\
+            cursor: pointer;\
+            font-size: 14px;\
+            line-height: 1.5;\
+        \}\
+\
+        /* N\'fat b\uc0\u7845 m */\
+        .vne-btn-vote \{\
+            background: #d8b4bc; /* M\'e0u h\uc0\u7891 ng nh\u7841 t nh\u432  \u7843 nh 1 */\
+            color: #fff;\
+            border: none;\
+            padding: 10px 30px;\
+            font-size: 14px;\
+            font-weight: bold;\
+            border-radius: 2px;\
+            cursor: pointer;\
+            margin-top: 10px;\
+        \}\
+\
+        .vne-btn-vote.active \{\
+            background: #a82e50; /* M\'e0u \uc0\u273 \u7853 m khi \u273 \'e3 ch\u7885 n */\
+        \}\
+\
+        /* Giao di\uc0\u7879 n k\u7871 t qu\u7843  (\u7842 nh 2) */\
+        .vne-result-item \{\
+            margin-bottom: 20px;\
+            border-bottom: 1px solid #e0e0e0;\
+            padding-bottom: 10px;\
+        \}\
+\
+        .vne-result-text \{\
+            display: flex;\
+            justify-content: space-between;\
+            font-size: 14px;\
+            margin-bottom: 8px;\
+            line-height: 1.4;\
+        \}\
+\
+        .vne-result-text.selected \{\
+            color: #a82e50;\
+            font-weight: bold;\
+        \}\
+\
+        .vne-progress-container \{\
+            display: flex;\
+            align-items: center;\
+            gap: 10px;\
+        \}\
+\
+        .vne-progress-bar \{\
+            flex-grow: 1;\
+            height: 6px;\
+            background: #e0e0e0;\
+            position: relative;\
+        \}\
+\
+        .vne-progress-fill \{\
+            height: 100%;\
+            background: #a82e50;\
+            width: 0%;\
+        \}\
+\
+        .vne-percent-tag \{\
+            background: #eee;\
+            padding: 2px 6px;\
+            font-size: 12px;\
+            font-weight: bold;\
+            border-radius: 2px;\
+        \}\
+    </style>\
+</head>\
+<body>\
+\
+<div class="vne-survey-box" id="surveyBox">\
+    <div class="vne-header">\
+        <span>Th\uc0\u259 m d\'f2</span>\
+        <span id="totalCount">0 bi\uc0\u7875 u quy\u7871 t</span>\
+    </div>\
+\
+    <div class="vne-title">B\uc0\u7841 n ch\u7885 n ph\u432 \u417 ng \'e1n \'93an c\u432 \'94 n\'e0o?</div>\
+\
+    <!-- Kh\uc0\u7889 i ch\u7885 n ph\u432 \u417 ng \'e1n -->\
+    <div id="voteMode">\
+        <div class="vne-options">\
+            <div class="vne-option" onclick="selectRadio(0)">\
+                <input type="radio" name="ancu" value="0">\
+                <label>\uc0\u7902  l\u7841 i th\'e0nh ph\u7889  \u273 \u7875  t\'ecm ki\u7871 m c\u417  h\u7897 i, ch\u7845 p nh\u7853 n \'e1p l\u7921 c chi ph\'ed v\'e0 kh\'f4ng gian s\u7889 ng h\u7841 n ch\u7871 .</label>\
+            </div>\
+            <div class="vne-option" onclick="selectRadio(1)">\
+                <input type="radio" name="ancu" value="1">\
+                <label>Ra v\'f9ng ven \uc0\u273 \u7875  c\'f3 kh\'f4ng gian s\u7889 ng d\u7877  ch\u7883 u h\u417 n, \u273 \'e1nh \u273 \u7893 i b\u7857 ng th\u7901 i gian di chuy\u7875 n v\'e0 kho\u7843 ng c\'e1ch v\u7899 i trung t\'e2m.</label>\
+            </div>\
+            <div class="vne-option" onclick="selectRadio(2)">\
+                <input type="radio" name="ancu" value="2">\
+                <label>\uc0\u431 u ti\'ean s\u7921  \u7893 n \u273 \u7883 nh, r\u7901 i th\'e0nh ph\u7889  v\u7873  qu\'ea \u273 \u7875  c\'f3 m\u7913 c s\u7889 ng th\u7845 p v\'e0 g\u7847 n gia \u273 \'ecnh d\'f9 c\'f3 th\u7875  \'edt c\u417  h\u7897 i ngh\u7873  nghi\u7879 p.</label>\
+            </div>\
+            <div class="vne-option" onclick="selectRadio(3)">\
+                <input type="radio" name="ancu" value="3">\
+                <label>V\uc0\u7851 n \u273 ang c\'e2n nh\u7855 c, ch\u432 a s\u7861 n s\'e0ng \u273 \u432 a ra l\u7921 a ch\u7885 n \u7903  th\u7901 i \u273 i\u7875 m hi\u7879 n t\u7841 i.</label>\
+            </div>\
+        </div>\
+        <button class="vne-btn-vote" id="submitBtn" onclick="doVote()">Bi\uc0\u7875 u quy\u7871 t</button>\
+    </div>\
+\
+    <!-- Kh\uc0\u7889 i hi\u7875 n th\u7883  k\u7871 t qu\u7843  -->\
+    <div id="resultMode" style="display:none;">\
+        <!-- K\uc0\u7871 t qu\u7843  s\u7869  \u273 \u432 \u7907 c Render b\u7857 ng JS -->\
+    </div>\
+</div>\
+\
+<script>\
+    // D\uc0\u7919  li\u7879 u ban \u273 \u7847 u l\'e0 0 phi\u7871 u cho t\u7845 t c\u7843 \
+    let voteData = [0, 0, 0, 0];\
+    const optionsText = [\
+        "\uc0\u7902  l\u7841 i th\'e0nh ph\u7889  \u273 \u7875  t\'ecm ki\u7871 m c\u417  h\u7897 i, ch\u7845 p nh\u7853 n \'e1p l\u7921 c chi ph\'ed v\'e0 kh\'f4ng gian s\u7889 ng h\u7841 n ch\u7871 .",\
+        "Ra v\'f9ng ven \uc0\u273 \u7875  c\'f3 kh\'f4ng gian s\u7889 ng d\u7877  ch\u7883 u h\u417 n, \u273 \'e1nh \u273 \u7893 i b\u7857 ng th\u7901 i gian di chuy\u7875 n v\'e0 kho\u7843 ng c\'e1ch v\u7899 i trung t\'e2m.",\
+        "\uc0\u431 u ti\'ean s\u7921  \u7893 n \u273 \u7883 nh, r\u7901 i th\'e0nh ph\u7889  v\u7873  qu\'ea \u273 \u7875  c\'f3 m\u7913 c s\u7889 ng th\u7845 p v\'e0 g\u7847 n gia \u273 \'ecnh d\'f9 c\'f3 th\u7875  \'edt c\u417  h\u7897 i ngh\u7873  nghi\u7879 p.",\
+        "V\uc0\u7851 n \u273 ang c\'e2n nh\u7855 c, ch\u432 a s\u7861 n s\'e0ng \u273 \u432 a ra l\u7921 a ch\u7885 n \u7903  th\u7901 i \u273 i\u7875 m hi\u7879 n t\u7841 i."\
+    ];\
+\
+    function selectRadio(idx) \{\
+        const inputs = document.getElementsByName('ancu');\
+        inputs[idx].checked = true;\
+        document.getElementById('submitBtn').classList.add('active');\
+    \}\
+\
+    function doVote() \{\
+        const selected = document.querySelector('input[name="ancu"]:checked');\
+        if(!selected) return;\
+\
+        const index = parseInt(selected.value);\
+        voteData[index]++; // T\uc0\u259 ng s\u7889  phi\u7871 u c\u7911 a ph\u432 \u417 ng \'e1n \u273 \u432 \u7907 c ch\u7885 n\
+\
+        renderResults(index);\
+    \}\
+\
+    function renderResults(selectedIndex) \{\
+        const total = voteData.reduce((a, b) => a + b, 0);\
+        document.getElementById('totalCount').innerText = total + " bi\uc0\u7875 u quy\u7871 t";\
+        \
+        document.getElementById('voteMode').style.display = 'none';\
+        const resDiv = document.getElementById('resultMode');\
+        resDiv.style.display = 'block';\
+        resDiv.innerHTML = '';\
+\
+        voteData.forEach((count, i) => \{\
+            const percent = total > 0 ? Math.round((count / total) * 100) : 0;\
+            const isSelected = (i === selectedIndex);\
+            \
+            resDiv.innerHTML += `\
+                <div class="vne-result-item">\
+                    <div class="vne-result-text $\{isSelected ? 'selected' : ''\}">\
+                        <div style="max-width: 80%">$\{optionsText[i]\}</div>\
+                        <div>$\{count\} phi\uc0\u7871 u</div>\
+                    </div>\
+                    <div class="vne-progress-container">\
+                        <div class="vne-percent-tag">$\{percent\}%</div>\
+                        <div class="vne-progress-bar">\
+                            <div class="vne-progress-fill" style="width: $\{percent\}%"></div>\
+                        </div>\
+                    </div>\
+                </div>\
+            `;\
+        \});\
+    \}\
+</script>\
+\
+</body>\
+</html>}
