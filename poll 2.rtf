@@ -10,7 +10,7 @@
 <head>\
   <meta charset="UTF-8">\
   <meta name="viewport" content="width=device-width, initial-scale=1.0">\
-  <title>T\'ednh s\uc0\u7889  n\u259 m mua nh\'e0</title>\
+  <title>Kh\uc0\u7843 o s\'e1t an c\u432 </title>\
 \
   <style>\
     body \{\
@@ -18,165 +18,248 @@
       padding: 20px;\
       background: #f5f5f5;\
       font-family: Arial, sans-serif;\
-      color: #111;\
+      color: #222;\
     \}\
 \
-    .calculator-container \{\
-      max-width: 900px;\
-      margin: 40px auto;\
+    .poll-container \{\
+      max-width: 1100px;\
+      margin: auto;\
       background: #f3f3f3;\
-      border-radius: 24px;\
+      border: 1px solid #ddd;\
       padding: 40px;\
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);\
-      font-family: Arial, sans-serif;\
+      border-radius: 4px;\
     \}\
 \
-    .title \{\
-      font-size: 56px;\
-      font-weight: 800;\
+    .poll-top \{\
+      display: flex;\
+      justify-content: space-between;\
+      color: #777;\
+      font-size: 18px;\
+      margin-bottom: 20px;\
+    \}\
+\
+    .poll-title \{\
+      font-size: 52px;\
+      font-weight: 700;\
       line-height: 1.2;\
-      margin-bottom: 36px;\
-      text-align: center;\
+      margin-bottom: 30px;\
       font-family: Arial, sans-serif;\
     \}\
 \
-    .label \{\
-      font-size: 28px;\
-      font-weight: 600;\
-      margin-bottom: 18px;\
-      display: block;\
-      font-family: Arial, sans-serif;\
+    .option \{\
+      border: 1px solid #ddd;\
+      background: #efefef;\
+      padding: 20px;\
+      margin-bottom: 15px;\
+      border-radius: 4px;\
+      cursor: pointer;\
+      display: flex;\
+      align-items: flex-start;\
+      gap: 15px;\
+      font-size: 20px;\
     \}\
 \
-    .input-box \{\
-      width: 100%;\
-      padding: 24px;\
-      font-size: 24px;\
-      border: 2px solid #999;\
-      border-radius: 6px;\
-      box-sizing: border-box;\
-      margin-bottom: 24px;\
-      background: white;\
-      font-family: Arial, sans-serif;\
+    .option input \{\
+      margin-top: 5px;\
+      transform: scale(1.2);\
+      accent-color: #b2285b;\
     \}\
 \
-    .calculate-btn \{\
-      width: 100%;\
-      background: #000;\
+    .vote-btn \{\
+      margin-top: 20px;\
+      background: #ccc;\
       color: white;\
       border: none;\
-      padding: 22px;\
-      font-size: 28px;\
-      font-weight: 700;\
-      cursor: pointer;\
-      border-radius: 4px;\
-      transition: 0.2s;\
-      font-family: Arial, sans-serif;\
-    \}\
-\
-    .calculate-btn:hover \{\
-      opacity: 0.92;\
-    \}\
-\
-    .result \{\
-      margin-top: 36px;\
-      text-align: center;\
-      font-size: 32px;\
-      font-weight: 700;\
-      line-height: 1.5;\
-      font-family: Arial, sans-serif;\
-    \}\
-\
-    .note \{\
-      margin-top: 20px;\
-      text-align: center;\
+      padding: 15px 40px;\
       font-size: 20px;\
-      color: #777;\
-      font-family: Arial, sans-serif;\
+      font-weight: bold;\
+      border-radius: 4px;\
+      cursor: pointer;\
     \}\
 \
-    @media (max-width: 768px) \{\
-      .calculator-container \{\
-        padding: 24px;\
-      \}\
+    .vote-btn.active \{\
+      background: #b2285b;\
+    \}\
 \
-      .title \{\
-        font-size: 38px;\
-      \}\
+    .time \{\
+      margin-top: 20px;\
+      text-align: right;\
+      color: #777;\
+      font-size: 16px;\
+    \}\
 \
-      .label \{\
-        font-size: 22px;\
-      \}\
+    .result-box \{\
+      display: none;\
+      margin-top: 20px;\
+    \}\
 \
-      .input-box \{\
-        font-size: 20px;\
-        padding: 18px;\
-      \}\
+    .result-item \{\
+      margin-bottom: 25px;\
+    \}\
 \
-      .calculate-btn \{\
-        font-size: 22px;\
-        padding: 18px;\
-      \}\
+    .result-title \{\
+      display: flex;\
+      justify-content: space-between;\
+      font-size: 18px;\
+      margin-bottom: 8px;\
+    \}\
 \
-      .result \{\
-        font-size: 24px;\
-      \}\
+    .percent \{\
+      background: #e8e8e8;\
+      padding: 2px 8px;\
+      margin-left: 10px;\
+      border-radius: 4px;\
+      font-weight: bold;\
+    \}\
 \
-      .note \{\
-        font-size: 16px;\
-      \}\
+    .bar-bg \{\
+      width: 100%;\
+      height: 8px;\
+      background: #ddd;\
+    \}\
+\
+    .bar-fill \{\
+      height: 100%;\
+      background: #999;\
+    \}\
+\
+    .highlight \{\
+      color: #b2285b;\
+    \}\
+\
+    .highlight .bar-fill \{\
+      background: #b2285b;\
     \}\
   </style>\
 </head>\
 \
 <body>\
 \
-  <div class="calculator-container">\
+<div class="poll-container">\
 \
-    <div class="title">\
-      B\uc0\u7841 n c\u7847 n bao nhi\'eau n\u259 m \u273 \u7875  mua nh\'e0?\
-    </div>\
+  <div class="poll-top">\
+    <div>Th\uc0\u259 m d\'f2</div>\
+    <div id="totalVotes">0 bi\uc0\u7875 u quy\u7871 t</div>\
+  </div>\
 \
-    <label class="label">\
-      Nh\uc0\u7853 p thu nh\u7853 p m\u7895 i th\'e1ng (VN\u272 ):\
+  <div class="poll-title">\
+    B\uc0\u7841 n ch\u7885 n ph\u432 \u417 ng \'e1n \'93an c\u432 \'94 n\'e0o?\
+  </div>\
+\
+  <!-- FORM -->\
+  <div id="voteSection">\
+\
+    <label class="option">\
+      <input type="radio" name="poll" value="0">\
+      <span>\uc0\u7902  l\u7841 i th\'e0nh ph\u7889  \u273 \u7875  t\'ecm ki\u7871 m c\u417  h\u7897 i, ch\u7845 p nh\u7853 n \'e1p l\u7921 c chi ph\'ed v\'e0 kh\'f4ng gian s\u7889 ng h\u7841 n ch\u7871 .</span>\
     </label>\
 \
-    <input \
-      type="number" \
-      id="salary"\
-      class="input-box"\
-      placeholder="V\'ed d\uc0\u7909 : 15000000"\
-    >\
+    <label class="option">\
+      <input type="radio" name="poll" value="1">\
+      <span>Ra v\'f9ng ven \uc0\u273 \u7875  c\'f3 kh\'f4ng gian s\u7889 ng d\u7877  ch\u7883 u h\u417 n, \u273 \'e1nh \u273 \u7893 i b\u7857 ng th\u7901 i gian di chuy\u7875 n v\'e0 kho\u7843 ng c\'e1ch v\u7899 i trung t\'e2m.</span>\
+    </label>\
 \
-    <button class="calculate-btn" onclick="calculateYears()">\
-      T\'ednh to\'e1n\
-    </button>\
+    <label class="option">\
+      <input type="radio" name="poll" value="2">\
+      <span>\uc0\u431 u ti\'ean s\u7921  \u7893 n \u273 \u7883 nh, r\u7901 i th\'e0nh ph\u7889  v\u7873  qu\'ea \u273 \u7875  c\'f3 m\u7913 c s\u7889 ng th\u7845 p v\'e0 g\u7847 n gia \u273 \'ecnh d\'f9 c\'f3 th\u7875  \'edt c\u417  h\u7897 i ngh\u7873  nghi\u7879 p.</span>\
+    </label>\
 \
-    <div class="result" id="result"></div>\
+    <label class="option">\
+      <input type="radio" name="poll" value="3">\
+      <span>V\uc0\u7851 n \u273 ang c\'e2n nh\u7855 c, ch\u432 a s\u7861 n s\'e0ng \u273 \u432 a ra l\u7921 a ch\u7885 n \u7903  th\u7901 i \u273 i\u7875 m hi\u7879 n t\u7841 i.</span>\
+    </label>\
 \
-    <div class="note">\
-      *Gi\'e1 c\uc0\u259 n h\u7897  gi\u7843  \u273 \u7883 nh: 4 t\u7927  \u273 \u7891 ng (TP.HCM)\
-    </div>\
+    <button class="vote-btn" id="voteBtn">Bi\uc0\u7875 u quy\u7871 t</button>\
+\
+    <div class="time">Th\uc0\u7901 i gian t\u7915 : 2/5</div>\
 \
   </div>\
 \
-  <script>\
-    function calculateYears() \{\
-      const salary = parseFloat(document.getElementById("salary").value);\
-      const housePrice = 4000000000;\
+  <!-- RESULT -->\
+  <div class="result-box" id="resultSection"></div>\
 \
-      if (!salary || salary <= 0) \{\
-        document.getElementById("result").innerHTML =\
-          "Vui l\'f2ng nh\uc0\u7853 p thu nh\u7853 p h\u7907 p l\u7879 .";\
-        return;\
-      \}\
+</div>\
 \
-      const years = housePrice / (salary * 12);\
+<script>\
+  const voteBtn = document.getElementById("voteBtn");\
+  const resultSection = document.getElementById("resultSection");\
+  const voteSection = document.getElementById("voteSection");\
+  const totalVotes = document.getElementById("totalVotes");\
 \
-      document.getElementById("result").innerHTML =\
-        "B\uc0\u7841 n c\u7847 n kho\u7843 ng <strong>" + years.toFixed(1) + " n\u259 m</strong> \u273 \u7875  mua nh\'e0";\
+  const labels = [\
+    "\uc0\u7902  l\u7841 i th\'e0nh ph\u7889  \u273 \u7875  t\'ecm ki\u7871 m c\u417  h\u7897 i, ch\u7845 p nh\u7853 n \'e1p l\u7921 c chi ph\'ed v\'e0 kh\'f4ng gian s\u7889 ng h\u7841 n ch\u7871 .",\
+    "Ra v\'f9ng ven \uc0\u273 \u7875  c\'f3 kh\'f4ng gian s\u7889 ng d\u7877  ch\u7883 u h\u417 n, \u273 \'e1nh \u273 \u7893 i b\u7857 ng th\u7901 i gian di chuy\u7875 n v\'e0 kho\u7843 ng c\'e1ch v\u7899 i trung t\'e2m.",\
+    "\uc0\u431 u ti\'ean s\u7921  \u7893 n \u273 \u7883 nh, r\u7901 i th\'e0nh ph\u7889  v\u7873  qu\'ea \u273 \u7875  c\'f3 m\u7913 c s\u7889 ng th\u7845 p v\'e0 g\u7847 n gia \u273 \'ecnh d\'f9 c\'f3 th\u7875  \'edt c\u417  h\u7897 i ngh\u7873  nghi\u7879 p.",\
+    "V\uc0\u7851 n \u273 ang c\'e2n nh\u7855 c, ch\u432 a s\u7861 n s\'e0ng \u273 \u432 a ra l\u7921 a ch\u7885 n \u7903  th\u7901 i \u273 i\u7875 m hi\u7879 n t\u7841 i."\
+  ];\
+\
+  let votes = JSON.parse(localStorage.getItem("pollVotes")) || [0,0,0,0];\
+\
+  function formatNumber(num) \{\
+    return num.toLocaleString("vi-VN");\
+  \}\
+\
+  function saveVotes() \{\
+    localStorage.setItem("pollVotes", JSON.stringify(votes));\
+  \}\
+\
+  function updateTotal() \{\
+    const total = votes.reduce((a,b)=>a+b,0);\
+    totalVotes.innerText = formatNumber(total) + " bi\uc0\u7875 u quy\u7871 t";\
+  \}\
+\
+  function renderResults(selectedIndex) \{\
+    const total = votes.reduce((a,b)=>a+b,0);\
+\
+    let html = "";\
+\
+    votes.forEach((v,i)=>\{\
+      const percent = total ? Math.round(v/total*100) : 0;\
+      const highlight = i === selectedIndex ? "highlight" : "";\
+\
+      html += `\
+        <div class="result-item $\{highlight\}">\
+          <div class="result-title">\
+            <div>$\{labels[i]\} <span class="percent">$\{percent\}%</span></div>\
+            <div>$\{formatNumber(v)\} phi\uc0\u7871 u</div>\
+          </div>\
+          <div class="bar-bg">\
+            <div class="bar-fill" style="width:$\{percent\}%"></div>\
+          </div>\
+        </div>\
+      `;\
+    \});\
+\
+    html += `<div class="time">Th\uc0\u7901 i gian t\u7915 : 2/5</div>`;\
+\
+    resultSection.innerHTML = html;\
+    resultSection.style.display = "block";\
+    voteSection.style.display = "none";\
+  \}\
+\
+  updateTotal();\
+\
+  document.querySelectorAll('input[name="poll"]').forEach(input=>\{\
+    input.addEventListener("change", ()=>\{\
+      voteBtn.classList.add("active");\
+    \});\
+  \});\
+\
+  voteBtn.onclick = ()=>\{\
+    const selected = document.querySelector('input[name="poll"]:checked');\
+\
+    if(!selected)\{\
+      alert("Vui l\'f2ng ch\uc0\u7885 n ph\u432 \u417 ng \'e1n!");\
+      return;\
     \}\
-  </script>\
+\
+    const index = parseInt(selected.value);\
+    votes[index]++;\
+    saveVotes();\
+    updateTotal();\
+    renderResults(index);\
+  \};\
+</script>\
 \
 </body>\
 </html>}
